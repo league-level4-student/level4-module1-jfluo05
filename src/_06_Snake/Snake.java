@@ -47,7 +47,7 @@ public class Snake {
 		
 
 		//4. set canMove to true
-		
+		canMove=true;
 	}
 
 	public void setDirection(Direction d) {
