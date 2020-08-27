@@ -35,13 +35,40 @@ public class Snake {
 
 	public void update() {
 		//1. use a switch statement to check on the currentDirection
-		//   of the snake and calculate its next x and y position.
-		
+		//   of the snake 
+		//and calculate its next x and y position.
+		Location headLoc= head.getLocation();;
+		switch(currentDirection) {
+		case UP: 
+			headLoc.y--;
+			System.out.println("UP");
+			break;
+		case DOWN: 
+			headLoc.y--;
+			System.out.println("DOWN");
+			break;
+		case LEFT: 
+			headLoc.y--;
+			System.out.println("LEFT");
+			break;
+		case RIGHT: 
+			headLoc.y--;
+			System.out.println("RIGHT");
+			break;
+		default: 
+			System.out.println("ERROR");
+			break;
+		}
+	
 
 		//2. Iterate through the SnakeSegments in reverse order
 		//2a. Update each snake segment to the location of the segment 
 		//    in front of it.
+		for (int i = snake.size(); i >= 0; i--) {
+			SnakeSegment seg=snake.get(i);
+			seg.setLocation(snake.get(i-1).getLocation());
 		
+		}
 		
 		//3. set the location of the head to the new location calculated in step 1
 		
@@ -83,7 +110,9 @@ public class Snake {
 	public boolean isLocationOnSnake(Location loc) {
 		//1. complete the method so it returns true if the passed in
 		//   location is located on the snake
-		
+		for (int i = 0; i < snake.size(); i++) {
+			snake.get(i)=
+		}
 		return false;
 	}
 
