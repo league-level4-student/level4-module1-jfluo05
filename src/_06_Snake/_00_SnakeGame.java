@@ -95,7 +95,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 			timer.setDelay(10);
 			break;
 		case "Beginner": 
-			timer.setDelay(15);
+			timer.setDelay(60);
 			break;
 		default: 
 			System.out.println("ERROR");
@@ -156,14 +156,12 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		
 		Random r2=new Random();
 		int y2 =r2.nextInt(600);
-		Location foodLoc=new Location(x2, y2);
-		foodLocation.x=x2;
-		foodLocation.y=y2;
+		foodLocation=new Location(x2, y2);
 		
 		//2. set the foodLocation variable equal to the Location object you just created.
 		//   use the snake's isLocationOnSnake method to make sure you don't put the food on the snake
-		
-		snake.isLocationOnSnake();
+	
+		snake.isLocationOnSnake(foodLocation);
 		
 	}
 
@@ -197,10 +195,14 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		snake.update();
 		//2. if the snake is colliding with its own body 
 		//   or if the snake is out of bounds, call gameOver
-		
+		snake.isHeadCollidingWithBody();
 		//3. if the location of the head is equal to the location of the food,
 		// 	 feed the snake and set the food location
-		if()
+		if(snake.isLocationOnSnake(foodLocation)==true) {
+			snake.feed();
+			setFoodLocation();
+		}
 		//4. call panel.repaint();
+		panel.repaint();
 	}
 }
