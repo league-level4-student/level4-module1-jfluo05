@@ -89,13 +89,13 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		//   of the game. The smaller the number, the faster it goes.
 		switch(choice) {
 		case "Expert": 
-			timer.setDelay(5);
+			timer.setDelay(125);
 			break;
 		case "Moderate": 
-			timer.setDelay(10);
+			timer.setDelay(250);
 			break;
 		case "Beginner": 
-			timer.setDelay(60);
+			timer.setDelay(500);
 			break;
 		default: 
 			System.out.println("ERROR");
@@ -152,10 +152,10 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		
 		
 		Random r=new Random();
-		int x2 =r.nextInt(750);
+		int x2 =r.nextInt(_00_SnakeGame.WIDTH);
 		
 		Random r2=new Random();
-		int y2 =r2.nextInt(600);
+		int y2 =r2.nextInt(_00_SnakeGame.HEIGHT);
 		foodLocation=new Location(x2, y2);
 		
 		//2. set the foodLocation variable equal to the Location object you just created.
@@ -175,7 +175,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		String yesOrNo=JOptionPane.showInputDialog("Do you want to play again?");
 		//4. if they want to play again
 		if(yesOrNo.equalsIgnoreCase("yes")) {
-			snake.reset(new Location(_00_SnakeGame.WIDTH/2,_00_SnakeGame.HEIGHT/2));
+			snake.reset(new Location(_00_SnakeGame.WINDOW_WIDTH/2,_00_SnakeGame.WINDOW_HEIGHT/2));
 		}else{
 			System.exit(0);
 		}

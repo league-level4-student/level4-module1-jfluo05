@@ -44,35 +44,48 @@ public class Snake {
 		//2. Iterate through the SnakeSegments in reverse order
 		//2a. Update each snake segment to the location of the segment 
 		//    in front of it.
-		for (int i = snake.size()-1; i > 0; i--) {
-			SnakeSegment seg=snake.get(i);
-			seg.setLocation(snake.get(i-1).getLocation());
-		
-		}
-			Location headLoc= head.getLocation();;
+	
+	Location headLoc= head.getLocation();
+	int x=0;
+	int y=0;
 		//3. set the location of the head to the new location calculated in step 1
 		switch(currentDirection) {
+		
 		case UP: 
-			headLoc.y--;
+			//headLoc.
+			y--;
 			System.out.println("UP");
 			break;
 		case DOWN: 
-			headLoc.y++;
+			//headLoc.
+			y++;
 			System.out.println("DOWN");
 			break;
 		case LEFT: 
-			headLoc.x--;
+			//headLoc.
+			x--;
 			System.out.println("LEFT");
 			break;
 		case RIGHT: 
-			headLoc.x++;
+			//headLoc.
+			x++;
 			System.out.println("RIGHT");
 			break;
 		default: 
 			System.out.println("ERROR");
 			break;
 		}
+		System.out.println(headLoc.x);
+		System.out.println(head.getLocation().x);
 
+	for (int i = snake.size()-1; i > 0; i--) {
+			SnakeSegment seg=snake.get(i);
+			seg.setLocation(snake.get(i-1).getLocation());
+		
+		}
+	
+	Location loc= new Location (head.getLocation().x+x,head.getLocation().y+y);
+	head.setLocation(loc);
 		//4. set canMove to true
 		canMove=true;
 		
@@ -83,20 +96,20 @@ public class Snake {
 		//1. set the current direction equal to the passed in Direction only if canMove is true.
 		//   set canMove equal to false.
 		//   make sure the snake cannot completely reverse directions.
-		if(canMove) {
-			currentDirection=d;
-			if(d==Direction.DOWN && currentDirection!=Direction.UP) {
-				
-			}else if(d==Direction.UP && currentDirection!=Direction.DOWN) {
+	
 			
-			}else if(d==Direction.LEFT && currentDirection!=Direction.RIGHT) {
-			
-			}else if(d==Direction.RIGHT && currentDirection!=Direction.LEFT) {
-			
-			}else {
-				System.out.println("you can't go in that direction.");
+			if(d==Direction.DOWN && currentDirection==Direction.UP) {
+				return;
+			}else if(d==Direction.UP && currentDirection==Direction.DOWN) {
+				return;
+			}else if(d==Direction.LEFT && currentDirection==Direction.RIGHT) {
+				return;
+			}else if(d==Direction.RIGHT && currentDirection==Direction.LEFT) {
+				return;
 			}
 			
+			if(canMove) {
+			currentDirection=d;
 			canMove=false;
 		}
 	}
@@ -117,16 +130,24 @@ public class Snake {
 		//1. complete the method so it returns true if the head of the snake is outside of the window
 		//   and false otherwise
 		Location headLoc=head.getLocation();
+	
+		
 		if(headLoc.x<0 ) {
-			head.setLocation(new Location(_00_SnakeGame.WINDOW_WIDTH, headLoc.y));
-			System.out.println(head.getLocation().x);
-		} if(headLoc.x>_00_SnakeGame.WINDOW_WIDTH) {
+			headLoc.x= _00_SnakeGame.WIDTH;
+		
+//					.setLocation(new Location(_00_SnakeGame.WINDOW_WIDTH, headLoc.y));
+		} if(headLoc.x>_00_SnakeGame.WIDTH) {
 			System.out.println("Just go left");
-			head.setLocation(new Location(0, headLoc.y));
+			//head.setLocation(new Location(0, headLoc.y));
+			headLoc.x= 1;
+			
 		}if(headLoc.y<0) {
-			head.setLocation(new Location( headLoc.x,_00_SnakeGame.WINDOW_HEIGHT));
-		}if(headLoc.y>_00_SnakeGame.WINDOW_HEIGHT) {
-			head.setLocation(new Location(headLoc.x,0));
+		//	head.setLocation(new Location( headLoc.x,_00_SnakeGame.WINDOW_HEIGHT));
+			headLoc.y= _00_SnakeGame .HEIGHT;
+			
+		}if(headLoc.y>_00_SnakeGame.HEIGHT) {
+		//	head.setLocation(new Location(headLoc.x,0));
+			headLoc.y=1;
 		}
 	
 	}
@@ -151,9 +172,11 @@ public class Snake {
 		//1. complete the method so it returns true if the passed in
 		//   location is located on the snake
 		for (int i = 0; i < snake.size(); i++) {
-			if(snake.get(i).getLocation()==loc) {
+			if(snake.get(i).getLocation().equals(loc)) {
 				return true;
+			
 			}
+			
 		}
 		return false;
 	}
