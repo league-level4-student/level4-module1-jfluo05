@@ -123,7 +123,6 @@ public class Snake {
 		
 		//3. add the head to the snake
 		snake.add(head);
-		
 	}
 
 	public void isOutOfBounds() {
@@ -139,7 +138,7 @@ public class Snake {
 		} if(headLoc.x>_00_SnakeGame.WIDTH) {
 			System.out.println("Just go left");
 			//head.setLocation(new Location(0, headLoc.y));
-			headLoc.x= 1;
+			headLoc.x= 0;
 			
 		}if(headLoc.y<0) {
 		//	head.setLocation(new Location( headLoc.x,_00_SnakeGame.WINDOW_HEIGHT));
@@ -147,7 +146,7 @@ public class Snake {
 			
 		}if(headLoc.y>_00_SnakeGame.HEIGHT) {
 		//	head.setLocation(new Location(headLoc.x,0));
-			headLoc.y=1;
+			headLoc.y=0;
 		}
 	
 	}
